@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mathapp-deployment
+  namespace: k8s-mathapp-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mathapp
+  template:
+    metadata:
+      labels:
+        app: mathapp
+    spec:
+      imagePullSecrets:
+      - name: ghcr-secret
+      containers:
+      - name: mathapp
+        image: ghcr.io/cg011235/k8s-mathapp:latest
+        ports:
+        - containerPort: 8080
+

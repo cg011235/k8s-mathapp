@@ -1,5 +1,5 @@
 # Build the Go app
-FROM golang:1.16 as builder
+FROM golang:1.21 as builder
 WORKDIR /app
 COPY . .
 RUN go mod tidy
@@ -12,3 +12,4 @@ WORKDIR /root/
 COPY --from=builder /app/mathapp .
 EXPOSE 8080
 CMD ["./mathapp"]
+

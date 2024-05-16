@@ -4,6 +4,7 @@ import (
  "fmt"
  "net/http"
  "strconv"
+ "math"
 )
 
 func modHandler(w http.ResponseWriter, r *http.Request) {
@@ -13,7 +14,7 @@ func modHandler(w http.ResponseWriter, r *http.Request) {
  http.Error(w, "Invalid operands", http.StatusBadRequest)
  return
  }
- result := operand1 % operand2
+ _, result := math.Modf(operand1 / operand2)
  fmt.Fprintf(w, "%f", result)
 }
 
